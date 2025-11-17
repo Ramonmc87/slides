@@ -1,30 +1,39 @@
+HTML_PAGE = """
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Slideshow</title>
     <style>
-        body { margin:0; background:black; text-align:center; }
-        img { max-width:100vw; max-height:100vh; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain; /* troca para "cover" para preencher totalmente */
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
-    <img id="slide" src="https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide2.JPG">
+    <img id="slide" src="/image/0">
     <script>
-        const images = [
-            "https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide2.JPG",
-            "https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide3.JPG",
-            "https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide4.JPG",
-            "https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide5.JPG",
-            "https://raw.githubusercontent.com/Ramonmc87/slides/master/Slide6.JPG"
-        ];
-
+        let total = {{ total }};
         let index = 0;
 
         setInterval(() => {
-            index = (index + 1) % images.length;
-            document.getElementById("slide").src = images[index];
-        }, 5000); // muda a cada 5 segundos
+            index = (index + 1) % total;
+            document.getElementById("slide").src = "/image/" + index;
+        }, 5000);
     </script>
 </body>
 </html>
+"""
